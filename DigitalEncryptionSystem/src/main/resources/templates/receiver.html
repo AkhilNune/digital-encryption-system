@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Receiver</title>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+<div th:if="${#session.getAttribute('loggedIn') != null}" class="container">
+    <h1>Messages</h1>
+    <h3>The decrypted messages are</h3>
+    <!-- Display decrypted messages -->
+    <ul>
+        <li th:each="decryptedMessage : ${decryptedMessages}" th:text="${decryptedMessage}"></li>
+    </ul>
+</div>
+<div th:if="${#session.getAttribute('loggedIn') == null}">
+    <p>Please <a th:href="@{/login}">login</a> to access this page.</p>
+</div>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    // Check if the user is logged in
+    var loggedIn = /*[[${#session.getAttribute('loggedIn') != null}]]*/ false;
+
+    if (loggedIn) {
+        // Get the username
+        var username = /*[[${#session.getAttribute('loggedIn')}]]*/ '';
+
+        // Log the username
+        console.log("Logged in as: " + username);
+    } else {
+        // Not logged in
+        console.log("Please login to access this page.");
+    }
+    /*]]>*/
+</script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Digital Encryption System - Sender</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-section {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+        }
+
+        input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Digital Encryption System - Sender</h1>
+    <div class="form-section">
+        <form id="sendMessageForm" th:action="@{/sendEncryptedMessage}" method="post" onsubmit="return onSubmitForm()">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" placeholder="Enter your message"></textarea>
+            <input type="submit" value="Send Encrypted Message">
+        </form>
+    </div>
+    <div class="form-section">
+        <form th:action="@{/generateAESKey}" method="post">
+        </form>
+    </div>
+    <div th:text="${error}" class="error"></div>
+</div>
+
+<script>
+    function onSubmitForm() {
+        alert("Message sent successfully!");
+        return true; // Allow form submission
+    }
+</script>
+</body>
+</html>
+

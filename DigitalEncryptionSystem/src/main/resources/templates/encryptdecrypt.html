@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Digital Encryption System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            resize: none;
+            font-size: 16px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .message {
+            margin-top: 20px;
+            text-align: center;
+            color: #007bff;
+            font-style: italic;
+        }
+
+        .error {
+            margin-top: 20px;
+            text-align: center;
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .form-section label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-section input[type="submit"] {
+            display: block;
+            margin-top: 10px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .left-section {
+            float: left;
+            width: 48%;
+            margin-right: 2%;
+        }
+
+        .right-section {
+            float: right;
+            width: 48%;
+            margin-left: 2%;
+        }
+
+        .clear {
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Digital Encryption System</h1>
+    <div class="left-section form-section">
+        <form th:action="@{/encrypt}" method="post">
+            <label for="text">Text to Encrypt:</label>
+            <textarea id="text" name="text" rows="4" placeholder="Enter text to encrypt"></textarea>
+            <input type="submit" value="Encrypt">
+        </form>
+    </div>
+    <div class="right-section form-section">
+        <form th:action="@{/decrypt}" method="post">
+            <label for="encryptedText">Encrypted Text:</label>
+            <textarea id="encryptedText" name="encryptedText" rows="4" placeholder="Enter encrypted text"></textarea>
+            <input type="submit" value="Decrypt">
+        </form>
+    </div>
+    <div class="clear"></div>
+    <div class="form-section">
+        <form th:action="@{/generateKey}" method="post">
+            <input type="submit" value="Generate Key">
+        </form>
+    </div>
+    <div th:text="${error}" class="error"></div>
+    <div th:text="${message}" class="message"></div>
+    <div th:text="${encryptedText}"></div>
+    <div th:text="${decryptedText}"></div>
+</div>
+</body>
+</html>
